@@ -191,7 +191,11 @@ data:
     # Filter filter ssh logs since it's mostly bots trying to login
     <filter systemd.**>
       @type grep
-      exclude1 SYSTEMD_UNIT (sshd@.*\.service)
+      <exclude>
+          key SYSTEMD_UNIT
+          pattern (sshd@.*\.service)
+      </exclude>
+      # exclude1 SYSTEMD_UNIT (sshd@.*\.service)
     </filter>
 
   kubernetes.conf: |
@@ -284,7 +288,7 @@ data:
       include_tag_key true
       # Replace with the host/port to your Elasticsearch cluster.
       # This assumes a service `elasticsearch` exists in the default namespace
-      host xxxxxxx
+      host xxx
       port 443
       scheme https
       ssl_verify false
@@ -351,28 +355,28 @@ data:
     }
 
   geoip-filter.conf: |
-    <filter kubernetes.var.log.containers.nginx-ingress-**.log>
+    <filter kube.ingress-nginx.nginx-ingress-controller>
         type geoip
 
         # Specify one or more geoip lookup field which has ip address (default: host)
         # in the case of accessing nested value, delimit keys by dot like 'host.ip'.
-        geoip_lookup_key  host
+        geoip_lookup_key  remote_addr
 
         # Specify optional geoip database (using bundled GeoLiteCity databse by default)
         # geoip_database    "/opt/GeoLiteCity.dat"
 
         # Set adding field with placeholder (more than one settings are required.)
         <record>
-          city            ${city["host"]}
-          lat             ${latitude["host"]}
-          lon             ${longitude["host"]}
-          country_code3   ${country_code3["host"]}
-          country         ${country_code["host"]}
-          country_name    ${country_name["host"]}
-          dma             ${dma_code["host"]}
-          area            ${area_code["host"]}
-          region          ${region["host"]}
-          geoip           '{"location":[${longitude["host"]},${latitude["host"]}]}'
+          city            ${city["remote_addr"]}
+          lat             ${latitude["remote_addr"]}
+          lon             ${longitude["remote_addr"]}
+          country_code3   ${country_code3["remote_addr"]}
+          country         ${country_code["remote_addr"]}
+          country_name    ${country_name["remote_addr"]}
+          dma             ${dma_code["remote_addr"]}
+          area            ${area_code["remote_addr"]}
+          region          ${region["remote_addr"]}
+          geoip           '{"location":[${longitude["remote_addr"]},${latitude["remote_addr"]}]}'
         </record>
 
         # To avoid get stacktrace error with `[null, null]` array for elasticsearch.
