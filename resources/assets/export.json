@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "5e3eb720-e193-11e7-8661-b7b63e3293dd",
+    "_type": "visualization",
+    "_source": {
+      "title": "Heat map",
+      "visState": "{\"title\":\"Heat map\",\"type\":\"tile_map\",\"params\":{\"mapType\":\"Scaled Circle Markers\",\"isDesaturated\":true,\"addTooltip\":true,\"heatClusterSize\":1.5,\"legendPosition\":\"bottomright\",\"mapZoom\":2,\"mapCenter\":[0,0],\"wms\":{\"enabled\":true,\"options\":{\"format\":\"image/png\",\"transparent\":true,\"layers\":\"TOPO-OSM-WMS\"},\"url\":\"http://ows.mundialis.de/services/service?\"}},\"aggs\":[{\"id\":\"1\",\"enabled\":true,\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"enabled\":true,\"type\":\"geohash_grid\",\"schema\":\"segment\",\"params\":{\"field\":\"geoip.location\",\"autoPrecision\":true,\"isFilteredByCollar\":true,\"useGeocentroid\":true,\"precision\":6}}]}",
+      "uiStateJSON": "{\"mapZoom\":12,\"mapCenter\":[-37.81378466793126,144.96339797973636]}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"da5ce660-e189-11e7-8661-b7b63e3293dd\",\"filter\":[],\"query\":{\"query\":\"\",\"language\":\"lucene\"}}"
+      }
+    }
+  }
+]

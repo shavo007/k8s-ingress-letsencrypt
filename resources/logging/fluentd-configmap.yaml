@@ -363,7 +363,7 @@ data:
         geoip_lookup_key  remote_addr
 
         # Specify optional geoip database (using bundled GeoLiteCity databse by default)
-        # geoip_database    "/opt/GeoLiteCity.dat"
+        geoip_database    "/home/fluent/GeoLiteCity.dat"
 
         # Set adding field with placeholder (more than one settings are required.)
         <record>
