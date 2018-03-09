@@ -9,6 +9,8 @@ RUN buildDeps="build-essential curl libgeoip-dev ruby-dev  libmaxminddb-dev" \
      $buildDeps \
      && gem install fluent-plugin-geoip \
      && gem install fluent-plugin-forest \
+     && gem uninstall fluent-plugin-elasticsearch \
+     && gem install fluent-plugin-elasticsearch -v 1.13.3 \
      && cd /home/fluent \
      && curl http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz | gzip -d > GeoLiteCity.dat \
  && rm -rf /var/lib/apt/lists/* \
